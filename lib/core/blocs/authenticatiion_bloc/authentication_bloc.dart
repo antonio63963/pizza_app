@@ -28,6 +28,8 @@ class AuthenticationBloc
     });
   }
 
+  UserRepository get userRepository => _userRepository;
+  
   @override
   Future<void> close() {
     _userSubscription.cancel();
