@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_app/core/constants.dart';
 
 final ligthTheme = ThemeData(
-  colorScheme: ColorScheme.light(
-    surface: Colors.grey.shade100,
-    onSurface: Colors.black,
+  colorScheme: const ColorScheme.light(
+    surface: MyColors.dark,
+    onSurface: MyColors.light,
     primary: Colors.blue,
     onPrimary: Colors.white,
-  )
+  ),
+  scaffoldBackgroundColor: MyColors.dark,
+  
 );

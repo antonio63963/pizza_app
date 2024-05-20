@@ -17,7 +17,7 @@ class FirebaseUserRepository implements UserRepository {
   Stream<MyUser?> get user =>
       _firebaseAuth.authStateChanges().flatMap((firebaseUser) async* {
         if (firebaseUser == null) {
-          yield MyUser.empty;
+          yield null;
         } else {
           yield await userCollection.doc(firebaseUser.uid).get().then(
                 (value) => MyUser.fromEntity(
@@ -66,6 +66,7 @@ class FirebaseUserRepository implements UserRepository {
 
   @override
   Future<void> logOut() async {
+    print('LOGOUT');
     await _firebaseAuth.signOut();
   }
 }

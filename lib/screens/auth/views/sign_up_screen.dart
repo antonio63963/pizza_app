@@ -164,21 +164,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: TextStyle(
                             color: containsUpperCase
                                 ? Colors.green
-                                : Theme.of(context).colorScheme.onBackground),
+                                : Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
                         "⚈  1 lowercase",
                         style: TextStyle(
                             color: containsLowerCase
                                 ? Colors.green
-                                : Theme.of(context).colorScheme.onBackground),
+                                : Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
                         "⚈  1 number",
                         style: TextStyle(
                             color: containsNumber
                                 ? Colors.green
-                                : Theme.of(context).colorScheme.onBackground),
+                                : Theme.of(context).colorScheme.onSurface),
                       ),
                     ],
                   ),
@@ -190,14 +190,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: TextStyle(
                             color: containsSpecialChar
                                 ? Colors.green
-                                : Theme.of(context).colorScheme.onBackground),
+                                : Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
                         "⚈  8 minimum character",
                         style: TextStyle(
                             color: contains8Length
                                 ? Colors.green
-                                : Theme.of(context).colorScheme.onBackground),
+                                : Theme.of(context).colorScheme.onSurface),
                       ),
                     ],
                   ),
@@ -222,23 +222,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }),
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: AppTextFormField(
-                    controller: ageController,
-                    hintText: 'Age',
-                    obscureText: false,
-                    keyboardType: TextInputType.name,
-                    prefixIcon: const Icon(CupertinoIcons.checkmark_seal_fill),
-                    validator: (val) {
-                      if (val!.isEmpty) {
-                        return 'Please fill in this field';
-                      } else if (val.length > 30) {
-                        return 'Age too long';
-                      }
-                      return null;
-                    }),
-              ),
+              
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               !signUpRequired
                   ? SizedBox(
