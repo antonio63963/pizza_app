@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_app/core/utils/constants.dart';
 
 class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? Function(String?) validator;
@@ -16,8 +17,8 @@ class AppTextFormField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    required this.obscureText,
-    required this.keyboardType,
+    this.obscureText = false,
+    this.keyboardType = TextInputType.text,
     this.prefixIcon,
     this.suffixIcon,
     required this.validator,
@@ -41,17 +42,22 @@ class AppTextFormField extends StatelessWidget {
         prefixIcon: prefixIcon,
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(50),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: theme.colorScheme.secondary),
-          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: MyColors.orange),
+          borderRadius: BorderRadius.circular(50),
         ),
-        fillColor: Colors.grey.shade200,
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: MyColors.red),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        fillColor: MyColors.light,
         filled: true,
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey.shade500),
+        hintStyle: TextStyle(color: MyColors.grey, fontSize: 14),
         errorText: errMsg,
+        contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 12)
       ),
     );
   }
