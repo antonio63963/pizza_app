@@ -1,13 +1,10 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
-import 'package:pizza_app/core/blocs/authenticatiion_bloc/authentication_bloc.dart';
-import 'package:pizza_app/screens/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
-import 'package:pizza_app/screens/auth/blocs/sign_up_bloc/sign_up_bloc.dart';
-import 'package:pizza_app/screens/auth/views/sign_in_screen.dart';
-import 'package:pizza_app/screens/auth/views/sign_up_screen.dart';
+
+import 'package:pizza_app/core/components/components.dart';
+import 'package:pizza_app/core/constants.dart';
 
 final logger = Logger();
 
@@ -18,114 +15,88 @@ class WelcomeScreen extends StatefulWidget {
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateMixin {
-  late TabController tabController;
-
-  @override
-  void initState() {
-    tabController = TabController(initialIndex: 0, length: 2, vsync: this);
-    logger.i('WELCOME: ');
-    super.initState();
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  void showLogin(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return Container(
+            child: Text('WOWO'),
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Stack(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          body: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: const BoxDecoration(
+              gradient: MyColors.bgGradient,
+            ),
+            child: ListView(
               children: [
-                Align(
-                  alignment: const AlignmentDirectional(20, -1.2),
-                  child: Container(
-                    height: MediaQuery.of(context).size.width,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.tertiary),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 23,
+                    vertical: 10,
                   ),
+                  child: Image.asset('assets/img/welcome_img.png'),
                 ),
-                Align(
-                  alignment: const AlignmentDirectional(2.7, -1.2),
-                  child: Container(
-                    height: MediaQuery.of(context).size.width / 1.3,
-                    width: MediaQuery.of(context).size.width / 1.3,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.primary),
-                  ),
+                SvgPicture.asset(
+                  'assets/svg/LOGO.svg',
+                  width: 162,
                 ),
-                BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 100.0),
-                  child: Container(),
+                const SizedBox(height: 24),
+                SvgPicture.asset(
+                  'assets/svg/main_text.svg',
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height / 1.8,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                          child: TabBar(
-                            controller: tabController,
-                            unselectedLabelColor: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withOpacity(0.5),
-                            labelColor: Theme.of(context).colorScheme.onSurface,
-                            tabs: const [
-                              Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: Text(
-                                  'Sign In',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                            child: TabBarView(
-                          controller: tabController,
-                          children: [
-                            BlocProvider<SignInBloc>(
-                              create: (context) => SignInBloc(context
-                                  .read<AuthenticationBloc>()
-                                  .userRepository),
-                              child: const SignInScreen(),
-                            ),
-                            BlocProvider<SignUpBloc>(
-                              create: (context) => SignUpBloc(context
-                                  .read<AuthenticationBloc>()
-                                  .userRepository),
-                              child: const SignUpScreen(),
-                            ),
-                          ],
-                        ))
-                      ],
+                const SizedBox(height: 90),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppPrimaryButton(
+                      onClick: () => showLogin(context),
+                      text: 'LOGIN',
                     ),
-                  ),
-                )
+                    const SizedBox(width: 20),
+                    AppPrimaryButton(
+                      bgColor: MyColors.orange,
+                      onClick: () {},
+                      text: 'REGISTRATION',
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Continue as a Guest',
+                            style: theme.textTheme.bodySmall,
+                          ),
+                          const SizedBox(width: 6),
+                          const Icon(
+                            CupertinoIcons.chevron_right,
+                            size: 16,
+                            color: MyColors.light,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 70),
               ],
             ),
-          ),
-        ),
-      ),
+          )),
     );
   }
 }
