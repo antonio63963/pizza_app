@@ -24,33 +24,41 @@ class AppForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Form(
-        key: formKey,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 50,
-          ),
-          decoration: const BoxDecoration(
-            gradient: MyColors.bgGradient,
-          ),
-          child: ListView(
-            children: [
-              Align(
-                child: Image.asset(
-                  imagePath,
-                  width: 280,
-                ),
+    final mediaQueryData = MediaQuery.of(context);
+    return SingleChildScrollView(
+      reverse: true,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Form(
+          key: formKey,
+          child: Padding(
+            padding: mediaQueryData.viewInsets,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 50,
               ),
-              const HeaderForm(title: 'Login'),
-              ...widgets,
-              ButtonsForm(
-                isShownLoading: isShownLoading,
-                onSubmit: onSubmit,
+              decoration: const BoxDecoration(
+                gradient: MyColors.bgGradient,
               ),
-            ],
+              child: Column(
+                children: [
+                  Align(
+                    child: Image.asset(
+                      imagePath,
+                      width: 280,
+                    ),
+                  ),
+                  HeaderForm(title: title),
+                  ...widgets,
+                  ButtonsForm(
+                    isShownLoading: isShownLoading,
+                    onSubmit: onSubmit,
+                  ),
+                  // SizedBox(height: mediaQueryData.viewInsets.bottom)
+                ],
+              ),
+            ),
           ),
         ),
       ),

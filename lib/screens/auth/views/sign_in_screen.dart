@@ -42,6 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
           setState(() {
             signInRequired = false;
           });
+  
         } else if (state is SignInLoading) {
           setState(() {
             signInRequired = true;

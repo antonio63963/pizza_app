@@ -14,6 +14,7 @@ class ButtonsForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -25,7 +26,9 @@ class ButtonsForm extends StatelessWidget {
         const SizedBox(width: 24),
         AppPrimaryButton(
           bgColor: MyColors.dark,
-          onClick: () => Navigator.pop(context),
+          onClick: () => isKeyboardOpen
+              ? FocusScope.of(context).unfocus()
+              : Navigator.pop(context),
           text: 'CANCEL',
         ),
       ],

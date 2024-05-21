@@ -5,8 +5,10 @@ import 'package:logger/logger.dart';
 
 import 'package:pizza_app/core/components/components.dart';
 import 'package:pizza_app/core/utils/constants.dart';
+import 'package:pizza_app/core/utils/helper.dart';
 import 'package:pizza_app/core/utils/validators.dart';
 import 'package:pizza_app/screens/auth/views/sign_in_screen.dart';
+import 'package:pizza_app/screens/auth/views/sign_up_screen.dart';
 
 final logger = Logger();
 
@@ -19,22 +21,6 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   final TextEditingController _nameController = TextEditingController();
-
-  Future showLogin(BuildContext context) {
-    return showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        isDismissible: false,
-        backgroundColor: MyColors.dark,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(10),
-          ),
-        ),
-        builder: (_) {
-          return SignInScreen();
-        });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,18 +55,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppPrimaryButton(
-                      onClick: () => showLogin(context),
+                      onClick: () => Helper.displayBottomModal(
+                        context,
+                        const SignInScreen(),
+                      ),
                       text: 'LOGIN',
                     ),
                     const SizedBox(width: 20),
                     AppPrimaryButton(
                       bgColor: MyColors.orange,
-                      onClick: () {},
+                      onClick: () => Helper.displayBottomModal(
+                        context,
+                        const SignUpScreen(),
+                      ),
                       text: 'REGISTRATION',
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+               const SizedBox(height: 40),
                 Row(
                   children: [
                     TextButton(
