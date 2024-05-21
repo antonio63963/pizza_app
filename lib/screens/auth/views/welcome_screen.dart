@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
 
 import 'package:pizza_app/core/components/components.dart';
-import 'package:pizza_app/core/constants.dart';
+import 'package:pizza_app/core/utils/constants.dart';
+import 'package:pizza_app/core/utils/validators.dart';
+import 'package:pizza_app/screens/auth/views/sign_in_screen.dart';
 
 final logger = Logger();
 
@@ -16,13 +18,21 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  void showLogin(BuildContext context) {
-    showModalBottomSheet(
+  final TextEditingController _nameController = TextEditingController();
+
+  Future showLogin(BuildContext context) {
+    return showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
+        isDismissible: false,
+        backgroundColor: MyColors.dark,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(10),
+          ),
+        ),
         builder: (_) {
-          return Container(
-            child: Text('WOWO'),
-          );
+          return SignInScreen();
         });
   }
 
