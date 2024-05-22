@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/core/components/app_widgets/app_form/app_form.dart';
+import 'package:pizza_app/screens/auth/views/widgets/phone_input/countries_model.dart';
+import 'package:pizza_app/screens/auth/views/widgets/phone_input/phone_input.dart';
 
 import 'package:user_repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +19,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  late final Country country;
   final passwordController = TextEditingController();
   final repeatePasswordController = TextEditingController();
   final emailController = TextEditingController();
@@ -49,6 +52,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
+  void onChangedPhoneValue(String val) {}
+
+  @override
+  void initState() {
+    super.initState();
+    country = CountriesList.getByName('Ukraine');
+    phoneController.text = '+${country.dialCode}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignUpBloc, SignUpState>(
@@ -78,6 +90,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             emailController: emailController,
             bottomPadding: 20,
             // errorMsg: _errorMsg,
+          ),
+          PhoneInput(
+            phoneController: phoneController,
+            country: country,
+            onChanged: onChangedPhoneValue,
+            bottomPadding: 20,
           ),
           PasswordInput(
             passwordController: passwordController,

@@ -5,12 +5,14 @@ class MyUser extends Equatable {
   final String id;
   final String email;
   final String name;
+  final String phone;
   final bool hasActiveCart;
 
   const MyUser({
     required this.id,
     required this.email,
     required this.name,
+    required this.phone,
     this.hasActiveCart = false,
   });
 
@@ -18,18 +20,21 @@ class MyUser extends Equatable {
     id: '',
     email: '',
     name: '',
+    phone: '',
   );
 
   MyUser copyWith({
     String? id,
     String? name,
     String? email,
+    String? phone,
     bool? hasActiveCart,
   }) =>
       MyUser(
         id: id ?? this.id,
         email: email ?? this.email,
         name: name ?? this.name,
+        phone: phone ?? this.phone,
         hasActiveCart: hasActiveCart ?? this.hasActiveCart,
       );
 
@@ -38,6 +43,7 @@ class MyUser extends Equatable {
       id: id,
       email: email,
       name: name,
+      phone: phone,
       hasActiveCart: hasActiveCart,
     );
   }
@@ -47,6 +53,7 @@ class MyUser extends Equatable {
       id: entity.id,
       email: entity.email,
       name: entity.name,
+      phone: entity.phone,
     );
   }
 
@@ -58,11 +65,12 @@ class MyUser extends Equatable {
         id: $id,
         name: $name,
         email: $email,
+        phone: $phone,
         hasActiveCart: $hasActiveCart,
       )
     ''';
   }
 
   @override
-  List<Object?> get props => [id, email, name, hasActiveCart];
+  List<Object?> get props => [id, email, name, phone, hasActiveCart];
 }
