@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_app/core/utils/constants.dart';
+import 'package:pizza_app/core/utils/my_styles.dart';
 
 final ligthTheme = ThemeData(
   fontFamily: 'Montserrat',
@@ -11,6 +12,7 @@ final ligthTheme = ThemeData(
   ),
   scaffoldBackgroundColor: MyColors.dark,
   textTheme: const TextTheme(
+   
     bodyLarge: TextStyle(
       fontFamily: 'Quicksand',
       color: MyColors.dark,
@@ -31,6 +33,15 @@ final ligthTheme = ThemeData(
       color: MyColors.light,
       fontSize: 10,
     ),
+    headlineMedium: TextStyle(
+      color: Colors.amber,
+      fontWeight: FontWeight.normal,
+      fontSize: 14,
+    )
   ),
-
+  inputDecorationTheme: MyStyles.inputDecor,
+  dialogTheme: const DialogTheme(
+    backgroundColor: MyColors.light,
+    contentTextStyle: TextStyle(color: MyColors.dark)
+  ),
 );
