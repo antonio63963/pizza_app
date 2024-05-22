@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_app/core/components/components.dart';
 import 'package:pizza_app/core/utils/constants.dart';
+import 'package:pizza_app/core/utils/my_styles.dart';
 import 'package:pizza_app/core/utils/validators.dart';
 
 class PasswordInput extends StatefulWidget {
@@ -37,22 +38,26 @@ class _PasswordInputState extends State<PasswordInput> {
         left: widget.leftPadding,
         right: widget.rightPadding,
       ),
-      child: AppTextFormField(
+      child: TextFormField(
+        style: MyStyles.input,
         controller: widget.passwordController,
-        hintText: 'Password',
         obscureText: obscurePassword,
         keyboardType: TextInputType.visiblePassword,
-        prefixIcon: const Icon(CupertinoIcons.lock_fill, color: MyColors.dark),
-        errMsg: widget.errorMsg,
         validator: Validators.password,
-        suffixIcon: IconButton(
-          onPressed: () => setState(() => obscurePassword = !obscurePassword),
-          icon: Icon(
-            obscurePassword
-                ? CupertinoIcons.eye_fill
-                : CupertinoIcons.eye_slash_fill,
-            color: MyColors.dark,
+        decoration: InputDecoration(
+          hintText: 'Password',
+          prefixIcon:
+              const Icon(CupertinoIcons.lock_fill, color: MyColors.dark),
+          suffixIcon: IconButton(
+            onPressed: () => setState(() => obscurePassword = !obscurePassword),
+            icon: Icon(
+              obscurePassword
+                  ? CupertinoIcons.eye_fill
+                  : CupertinoIcons.eye_slash_fill,
+              color: MyColors.dark,
+            ),
           ),
+          errorText: widget.errorMsg,
         ),
       ),
     );

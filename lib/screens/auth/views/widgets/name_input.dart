@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pizza_app/core/components/components.dart';
 import 'package:pizza_app/core/utils/constants.dart';
+import 'package:pizza_app/core/utils/my_styles.dart';
 import 'package:pizza_app/core/utils/validators.dart';
 
 class NameInput extends StatelessWidget {
@@ -29,14 +31,20 @@ class NameInput extends StatelessWidget {
         left: leftPadding,
         right: rightPadding,
       ),
-      child: AppTextFormField(
+      child: TextFormField(
+        style: MyStyles.input,
         controller: nameController,
-        hintText: 'Name',
         obscureText: false,
         keyboardType: TextInputType.text,
-        prefixIcon: const Icon(CupertinoIcons.mail_solid, color: MyColors.dark,),
-        errMsg: errorMsg,
         validator: Validators.name,
+        decoration: InputDecoration(
+          errorText: errorMsg,
+          hintText: 'Name',
+          prefixIcon: const Icon(
+            CupertinoIcons.mail_solid,
+            color: MyColors.dark,
+          ),
+        ),
       ),
     );
   }
