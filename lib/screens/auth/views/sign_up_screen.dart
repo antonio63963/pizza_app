@@ -43,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       myUser = myUser.copyWith(
         email: emailController.text,
         name: nameController.text,
+        phone: '${country.dialCode}${phoneController.text}',
       );
       setState(() {
         context.read<SignUpBloc>().add(
@@ -52,13 +53,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
-  void onChangedPhoneValue(String val) {}
+  void onChangedPhoneValue(String val) {
+    logger.i('Phone input: $val');
+    if (val == country.dialCode) {
+      phoneController.text = country.dialCode;
+      return;
+    }
+    ;
+  }
 
   @override
   void initState() {
     super.initState();
     country = CountriesList.getByName('Ukraine');
-    phoneController.text = '+${country.dialCode}';
   }
 
   @override

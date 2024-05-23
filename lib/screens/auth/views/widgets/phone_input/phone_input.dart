@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pizza_app/core/utils/constants.dart';
 import 'package:pizza_app/core/utils/my_styles.dart';
 import 'package:pizza_app/core/utils/validators.dart';
 import 'package:pizza_app/screens/auth/views/widgets/phone_input/countries_model.dart';
@@ -39,14 +38,20 @@ class PhoneInput extends StatelessWidget {
         controller: phoneController,
         onChanged: onChanged,
         obscureText: false,
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.phone,
         validator: (val) => Validators.phone(val, country),
         decoration: InputDecoration(
           errorText: errorMsg,
-          hintText: 'Phone',
-          prefixIcon: const Padding(
-            padding: EdgeInsets.only(left: 14.0, right: 16, top: 14),
-            child: Text("🇺🇦"),
+          prefixIcon: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 14.0, right: 16, ),
+                child: Text("🇺🇦"),
+              ),
+              Text('+${country.dialCode} ')
+            ],
           ),
         ),
       ),

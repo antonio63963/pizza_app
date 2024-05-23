@@ -6,7 +6,6 @@ import 'package:logger/logger.dart';
 import 'package:pizza_app/core/components/components.dart';
 import 'package:pizza_app/core/utils/constants.dart';
 import 'package:pizza_app/core/utils/helper.dart';
-import 'package:pizza_app/core/utils/validators.dart';
 import 'package:pizza_app/screens/auth/views/sign_in_screen.dart';
 import 'package:pizza_app/screens/auth/views/sign_up_screen.dart';
 
@@ -95,7 +94,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 70),
+                const SizedBox(height: 70),
               ],
             ),
           )),

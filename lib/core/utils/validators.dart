@@ -1,7 +1,6 @@
 import 'package:pizza_app/screens/auth/views/widgets/phone_input/countries_model.dart';
 
 class Validators {
-   
   // static RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+.)+[\w-]{2,4}$');
   // 8 char, one uppercase, num, and one special character
   static RegExp passwordRexExp = RegExp(
@@ -9,7 +8,7 @@ class Validators {
 
   static String? email(val) {
     RegExp emailRegExp = RegExp(
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
     if (val!.isEmpty) {
       return 'Please fill in this field';
     } else if (!emailRegExp.hasMatch(val)) {
@@ -37,7 +36,9 @@ class Validators {
   }
 
   static String? phone(val, Country country) {
-    final phoneRegExp = RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$');
+    final phoneRegExp = RegExp(
+        '^[0-9]{${country.minLength},${country.maxLength}}\$');
+    // final phoneRegExp = RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$');
     if (val == null ||
         val.trim() == null ||
         val.trim() == '+${country.dialCode}') {
