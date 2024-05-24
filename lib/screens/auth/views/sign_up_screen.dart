@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/core/components/app_widgets/app_form/app_form.dart';
+import 'package:pizza_app/core/utils/validators.dart';
 import 'package:pizza_app/screens/auth/views/widgets/phone_input/countries_model.dart';
 import 'package:pizza_app/screens/auth/views/widgets/phone_input/phone_input.dart';
 
@@ -38,7 +39,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool contains8Length = false;
 
   void onSubmit() {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() &&
+        passwordController.text == repeatePasswordController.text) {
       MyUser myUser = MyUser.empty;
       myUser = myUser.copyWith(
         email: emailController.text,
@@ -47,19 +49,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
       setState(() {
         context.read<SignUpBloc>().add(
-              SignUpAction(myUser: myUser, password: passwordController.text),
+              SignUpAction(
+                myUser: myUser,
+                password: passwordController.text,
+              ),
             );
       });
     }
-  }
-
-  void onChangedPhoneValue(String val) {
-    logger.i('Phone input: $val');
-    if (val == country.dialCode) {
-      phoneController.text = country.dialCode;
-      return;
-    }
-    ;
   }
 
   @override
@@ -76,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           setState(() {
             signUpRequired = false;
           });
-          // Navigator.pop(context);
+          Navigator.pop(context);
         } else if (state is SignUpLoading) {
           setState(() {
             signUpRequired = true;
@@ -101,7 +97,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           PhoneInput(
             phoneController: phoneController,
             country: country,
-            onChanged: onChangedPhoneValue,
             bottomPadding: 20,
           ),
           PasswordInput(
@@ -109,9 +104,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           PasswordInput(
             passwordController: repeatePasswordController,
+            validator: (val) => Validators.repeatPassword(
+              passwordController.text,
+              val,
+            ),
             topPadding: 20,
             bottomPadding: 60,
-            // errorMsg: _errorMsg,
           ),
         ],
         imagePath: 'assets/img/auth_pic_1.png',

@@ -12,9 +12,11 @@ class PasswordInput extends StatefulWidget {
   final double bottomPadding;
   final double leftPadding;
   final double rightPadding;
+  final String? Function(String?) validator;
   const PasswordInput({
     super.key,
     required this.passwordController,
+    this.validator = Validators.password,
     this.errorMsg,
     this.topPadding = 0,
     this.bottomPadding = 0,
@@ -43,7 +45,7 @@ class _PasswordInputState extends State<PasswordInput> {
         controller: widget.passwordController,
         obscureText: obscurePassword,
         keyboardType: TextInputType.visiblePassword,
-        validator: Validators.password,
+        validator: widget.validator,
         decoration: InputDecoration(
           hintText: 'Password',
           prefixIcon:

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class MyUserEntity {
   final String id;
   final String email;
@@ -15,21 +17,22 @@ class MyUserEntity {
 
   Map<String, Object?> toDocument() {
     return {
-      id: id,
-      name: name,
-      email: email,
-      phone: phone,
+      'id': id,
+      'name': name,
+      'email': email,
+      'phone': phone,
       'hasActiveCart': hasActiveCart,
     };
   }
 
   static MyUserEntity fromDocument(Map<String, Object?> doc) {
-    return MyUserEntity(
+    final user = MyUserEntity(
       id: doc['id'] as String,
       email: doc['email'] as String,
       name: doc['name'] as String,
       phone: doc['phone'] as String,
       hasActiveCart: doc['hasActiveCart'] as bool,
     );
+    return user;
   }
 }

@@ -19,7 +19,6 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  final TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

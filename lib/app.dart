@@ -26,7 +26,7 @@ class App extends StatelessWidget {
           create: (context) => SignUpBloc(GetIt.I<UserRepository>()),
         ),
       ],
-      child: AppView(),
+      child: const AppView(),
     );
   }
 }
