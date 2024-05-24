@@ -26,6 +26,17 @@ class Validators {
     return null;
   }
 
+  static String? repeatPassword(pass, val) {
+    if (val!.isEmpty) {
+      return 'Please fill in this field';
+    } else if (val.length < 6) {
+      return 'Please enter a valid password min 6 symbols';
+    } else if (val != pass) {
+      return 'Please enter the same password';
+    }
+    return null;
+  }
+
   static String? name(val) {
     if (val!.isEmpty) {
       return 'Please fill in this field';
@@ -36,8 +47,8 @@ class Validators {
   }
 
   static String? phone(val, Country country) {
-    final phoneRegExp = RegExp(
-        '^[0-9]{${country.minLength},${country.maxLength}}\$');
+    final phoneRegExp =
+        RegExp('^[0-9]{${country.minLength},${country.maxLength}}\$');
     // final phoneRegExp = RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$');
     if (val == null ||
         val.trim() == null ||
