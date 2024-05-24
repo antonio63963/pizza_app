@@ -41,7 +41,7 @@ class NameInput extends StatelessWidget {
           errorText: errorMsg,
           hintText: 'Name',
           prefixIcon: const Icon(
-            CupertinoIcons.mail_solid,
+            CupertinoIcons.person_fill,
             color: MyColors.dark,
           ),
         ),
