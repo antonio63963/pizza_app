@@ -6,7 +6,6 @@ import 'package:pizza_app/screens/auth/views/widgets/phone_input/countries_model
 class PhoneInput extends StatelessWidget {
   final TextEditingController phoneController;
   final Country country;
-  final Function(String) onChanged;
   final String? errorMsg;
   final double topPadding;
   final double bottomPadding;
@@ -21,7 +20,6 @@ class PhoneInput extends StatelessWidget {
     this.bottomPadding = 0,
     this.leftPadding = 0,
     this.rightPadding = 0,
-    required this.onChanged,
   });
 
   @override
@@ -36,7 +34,6 @@ class PhoneInput extends StatelessWidget {
       child: TextFormField(
         style: MyStyles.input,
         controller: phoneController,
-        onChanged: onChanged,
         obscureText: false,
         keyboardType: TextInputType.phone,
         validator: (val) => Validators.phone(val, country),
@@ -46,9 +43,12 @@ class PhoneInput extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 14.0, right: 16, ),
-                child: Text("🇺🇦"),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 14.0,
+                  right: 16,
+                ),
+                child: Text(country.flag),
               ),
               Text('+${country.dialCode} ')
             ],
