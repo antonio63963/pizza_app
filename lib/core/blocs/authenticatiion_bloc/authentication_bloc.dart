@@ -15,6 +15,8 @@ class AuthenticationBloc
   AuthenticationBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
         super(const AuthenticationState.unknown()) {
+    _authStatusController.add(AuthStatus.unknown);
+
     _userSubscription = _userRepository.user.listen((user) {
       add(AuthenticationUserChanged(user));
     });
@@ -22,24 +24,22 @@ class AuthenticationBloc
     on<AuthenticationUserChanged>((event, emit) {
       if (event.myUser != null) {
         emit(AuthenticationState.authenticated(event.myUser!));
+        _authStatusController.add(AuthStatus.authenticated);
       } else {
         emit(const AuthenticationState.unauthenticated());
+        _authStatusController.add(AuthStatus.unauthenticated);
       }
     });
   }
 
+  final StreamController<AuthStatus> _authStatusController = StreamController<AuthStatus>();
+  Stream<AuthStatus> get authStatus => _authStatusController.stream;
   UserRepository get userRepository => _userRepository;
-  
+  StreamSubscription<MyUser?> get userSubscription => _userSubscription;
+
   @override
   Future<void> close() {
     _userSubscription.cancel();
     return super.close();
   }
-
-  // @override
-  // Stream<AuthenticationState> mapEventToState(
-  //   AuthenticationEvent event,
-  // ) async* {
-  //   // TODO: implement mapEventToState
-  // }
 }

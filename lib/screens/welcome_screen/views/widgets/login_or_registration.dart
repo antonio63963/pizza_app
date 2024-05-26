@@ -25,7 +25,7 @@ class LoginOrRegistration extends StatelessWidget {
         AppPrimaryButton(
           bgColor: MyColors.orange,
           onClick: onRegistragionBtn,
-          text: 'REGISTRATION',
+          text: 'SIGNUP',
         ),
       ],
     );

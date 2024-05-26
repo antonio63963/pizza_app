@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isAuth = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,6 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
           title: 'Home',
           isAuthenticated: context.read<AuthenticationBloc>().state.status ==
               AuthStatus.authenticated,
+        ),
+        body: Center(
+          child: Text(
+            context.read<AuthenticationBloc>().state.status.toString(),
+          ),
         ),
       ),
     );

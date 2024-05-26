@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pizza_app/core/blocs/authenticatiion_bloc/authentication_bloc.dart';
 import 'package:pizza_app/core/components/app_widgets/app_form/app_form.dart';
 
 import 'package:pizza_app/screens/auth/views/widgets/email_input.dart';
 import 'package:pizza_app/screens/auth/views/widgets/password_input.dart';
+import 'package:pizza_app/screens/home/views/home_screen.dart';
 import 'package:user_repository/user_repository.dart';
 
 import '../blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -43,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
         if (state is SignInSuccess) {
           setState(() {
             signInRequired = false;
-            Navigator.pop(context);
+            // context.go(HomeScreen.routeName);
           });
         } else if (state is SignInLoading) {
           setState(() {
