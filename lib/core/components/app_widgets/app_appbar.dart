@@ -38,7 +38,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
             : IconButton(
                 onPressed: () => context.go('/'),
                 icon: const Icon(
-                  CupertinoIcons.square_arrow_left,
+                  CupertinoIcons.person_crop_circle_badge_exclam,
                   color: MyColors.light,
                 ),
               ),

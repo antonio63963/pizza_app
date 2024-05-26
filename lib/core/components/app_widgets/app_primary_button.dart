@@ -41,14 +41,17 @@ class AppPrimaryButton extends StatelessWidget {
                   
                 ),
             )
-            : Text(
-                text,
-                style: TextStyle(
-                  color: textColor ?? MyColors.light,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+            : FittedBox(
+              child: Text(
+                  text,
+                  style: TextStyle(
+                    color: textColor ?? MyColors.light,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    overflow: TextOverflow.ellipsis
+                  ),
                 ),
-              ),
+            ),
       ),
     );
   }
