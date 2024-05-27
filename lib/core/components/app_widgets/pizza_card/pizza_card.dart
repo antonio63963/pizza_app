@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_app/core/utils/constants.dart';
 import 'package:pizza_app/core/utils/my_styles.dart';
 import 'package:pizza_app/data/models/pizza_model.dart';
 
@@ -15,22 +16,24 @@ class PizzaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: MyStyles.cardDecoration,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(pizza.img),
-          const SizedBox(height: 16),
-          VegAndSpicy(
-            isSpicy: pizza.isSpicy,
-            isVegan: pizza.isVegan,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
+    return Material(
+      elevation: 4,
+      shape: const RoundedRectangleBorder(borderRadius: MyStyles.cardBorder),
+      color: MyColors.light,
+      child: InkWell(
+        borderRadius: MyStyles.cardBorder,
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Image.asset(pizza.img),
+              const SizedBox(height: 16),
+              VegAndSpicy(
+                isSpicy: pizza.isSpicy,
+                isVegan: pizza.isVegan,
+              ),
               PizzaCardTitle(title: pizza.title),
               PizzaCardDescription(description: pizza.description),
               Row(
@@ -47,7 +50,7 @@ class PizzaCard extends StatelessWidget {
               )
             ],
           ),
-        ],
+        ),
       ),
     );
   }

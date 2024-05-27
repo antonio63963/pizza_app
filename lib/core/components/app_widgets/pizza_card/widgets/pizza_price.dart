@@ -21,7 +21,7 @@ class PizzaPrice extends StatelessWidget {
             fontFamily: 'Montserrat',
             color: MyColors.blue,
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w900,
           ),
         ),
         const SizedBox(width: 8),

@@ -6,14 +6,16 @@ class PizzaCardTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 10.0,
-        bottom: 5.0,
-      ),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.headlineMedium,
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 5.0,
+        ),
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(overflow: TextOverflow.ellipsis),
+        ),
       ),
     );
   }

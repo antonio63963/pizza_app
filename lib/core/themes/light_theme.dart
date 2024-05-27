@@ -36,7 +36,7 @@ final ligthTheme = ThemeData(
     headlineMedium: TextStyle(
       color: MyColors.dark,
       fontWeight: FontWeight.w900,
-      fontSize: 16,
+      fontSize: 18,
       fontFamily: 'Quicksand',
     )
   ),

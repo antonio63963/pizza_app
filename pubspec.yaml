@@ -93,9 +93,9 @@ flutter:
   fonts:
     - family: Montserrat
       fonts:
-        - asset: assets/fonts/Montserrat-Black.otf
-        - asset: assets/fonts/Montserrat-Bold.otf
-        - asset: assets/fonts/Montserrat-Medium.otf
+        - asset: assets/fonts/Montserrat-Black.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+        - asset: assets/fonts/Montserrat-Medium.ttf
     #       - asset: fonts/Schyler-Italic.ttf
     #         style: italic
     - family: Quicksand
