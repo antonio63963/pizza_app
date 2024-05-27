@@ -26,4 +26,21 @@ class MyStyles {
     fontWeight: FontWeight.normal,
     fontSize: 16,
   );
+
+  static const cardDecoration = BoxDecoration(
+  color: MyColors.light,
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(500),
+    topRight: Radius.circular(500),
+    bottomLeft: Radius.circular(50),
+    bottomRight: Radius.circular(50),
+  ),
+  boxShadow: [
+    BoxShadow(
+      color: MyColors.darkLight,
+      offset: Offset(2, 4),
+      blurRadius: 5,
+    )
+  ],
+);
 }

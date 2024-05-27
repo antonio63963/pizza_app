@@ -34,9 +34,10 @@ final ligthTheme = ThemeData(
       fontSize: 10,
     ),
     headlineMedium: TextStyle(
-      color: Colors.amber,
-      fontWeight: FontWeight.normal,
-      fontSize: 14,
+      color: MyColors.dark,
+      fontWeight: FontWeight.w900,
+      fontSize: 16,
+      fontFamily: 'Quicksand',
     )
   ),
   inputDecorationTheme: MyStyles.inputDecor,

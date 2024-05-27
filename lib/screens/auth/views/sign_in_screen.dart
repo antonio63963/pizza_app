@@ -27,19 +27,19 @@ class _SignInScreenState extends State<SignInScreen> {
   bool obscurePassword = true;
   String? _errorMsg;
 
+  void onSubmit() {
+    if (_formKey.currentState!.validate()) {
+      context.read<SignInBloc>().add(
+            SignInAction(
+              email: emailController.text,
+              password: passwordController.text,
+            ),
+          );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void onSubmit() {
-      if (_formKey.currentState!.validate()) {
-        context.read<SignInBloc>().add(
-              SignInAction(
-                email: emailController.text,
-                password: passwordController.text,
-              ),
-            );
-      }
-    }
-
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
