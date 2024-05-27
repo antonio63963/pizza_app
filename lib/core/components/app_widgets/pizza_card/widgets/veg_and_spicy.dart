@@ -14,6 +14,7 @@ class VegAndSpicy extends StatelessWidget {
       children: [
         TagPizza(
           tagName: isVegan ? 'Pure-veg' : 'Non-veg',
+          bgColor: isVegan ? MyColors.green : null,
         ),
         const SizedBox(width: 8),
         TagPizza(

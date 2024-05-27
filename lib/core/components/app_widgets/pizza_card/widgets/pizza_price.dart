@@ -31,6 +31,7 @@ class PizzaPrice extends StatelessWidget {
             style: const TextStyle(
               fontFamily: 'Montserrat',
               decoration: TextDecoration.lineThrough,
+              decorationColor: MyColors.grey,
               color: MyColors.grey,
               fontSize: 14,
             ),

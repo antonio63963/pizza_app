@@ -18,6 +18,7 @@ class PizzaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 4,
+      shadowColor: MyColors.light,
       shape: const RoundedRectangleBorder(borderRadius: MyStyles.cardBorder),
       color: MyColors.light,
       child: InkWell(

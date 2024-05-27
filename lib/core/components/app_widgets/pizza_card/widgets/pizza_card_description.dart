@@ -15,6 +15,7 @@ class PizzaCardDescription extends StatelessWidget {
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 fontSize: 14,
                 overflow: TextOverflow.clip,
+                color: Colors.grey.shade700,
               ),
         ),
       ),

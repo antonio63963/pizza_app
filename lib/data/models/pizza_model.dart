@@ -42,6 +42,26 @@ final pizzas = [
     price: 8.00,
     oldPrice: 11.20,
   ),
+  Pizza(
+    id: '5',
+    img: 'assets/img/pizza/Napoli.png',
+    title: 'Napoli',
+    description: 'Tomato sauce, Mozzarella, Capers, Anchovies, Olive oil',
+    isSpicy: false,
+    isVegan: true,
+    price: 8.60,
+    oldPrice: 11.60,
+  ),
+  Pizza(
+    id: '5',
+    img: 'assets/img/pizza/Peperoni.png',
+    title: 'Peperoni',
+    description: 'Tomato sauce, Mozzarella, Chili peppers',
+    isSpicy: true,
+    isVegan: false,
+    price: 9.20,
+    oldPrice: 12.60,
+  ),
 ];
 
 class Pizza {
