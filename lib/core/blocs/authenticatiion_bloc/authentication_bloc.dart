@@ -32,7 +32,8 @@ class AuthenticationBloc
     });
   }
 
-  final StreamController<AuthStatus> _authStatusController = StreamController<AuthStatus>();
+  final StreamController<AuthStatus> _authStatusController =
+      StreamController<AuthStatus>();
   Stream<AuthStatus> get authStatus => _authStatusController.stream;
   UserRepository get userRepository => _userRepository;
   StreamSubscription<MyUser?> get userSubscription => _userSubscription;

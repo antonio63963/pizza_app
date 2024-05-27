@@ -9,6 +9,7 @@ import 'package:user_repository/user_repository.dart';
 
 RouterConfig<Object>? routes(AuthenticationBloc bloc) {
   return GoRouter(
+    initialLocation: '/home',
     routes: [
       GoRoute(
         path: '/',
@@ -20,7 +21,13 @@ RouterConfig<Object>? routes(AuthenticationBloc bloc) {
       ),
     ],
     redirect: (_, routerState) {
+      logger.i('ROUTE STATE: ${routerState.uri}');
       bool isLoggedIn = bloc.state.status == AuthStatus.authenticated;
+      // if (!isLoggedIn) {
+      //   return '/';
+      // } else {
+      //  return routerState.uri.path == '/' ? '/home' : null;
+      // }
       if (isLoggedIn) {
         return '/home';
       } else {
@@ -35,6 +42,7 @@ class RouterNotifier extends ChangeNotifier {
   AuthStatus authStatus = AuthStatus.unknown;
   RouterNotifier(AuthenticationBloc bloc) {
     bloc.authStatus.listen((status) {
+      logger.w('RouterNotifier: $status');
       if (status != authStatus) {
         authStatus = status;
         notifyListeners();

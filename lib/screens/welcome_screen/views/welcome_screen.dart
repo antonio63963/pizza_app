@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+import 'package:pizza_app/core/blocs/authenticatiion_bloc/authentication_bloc.dart';
 
 import 'package:pizza_app/core/components/components.dart';
 import 'package:pizza_app/core/utils/constants.dart';
@@ -54,9 +56,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 onLoginBtn: displayLogin,
                 onRegistragionBtn: displayRegistration,
               ),
-              ContinueButton(
-                onPressed: goToHomeScreen,
-              ),
+              context.watch<AuthenticationBloc>().state.status ==
+                      AuthStatus.authenticated
+                  ? const SizedBox()
+                  : ContinueButton(
+                      onPressed: goToHomeScreen,
+                    ),
             ],
           ),
         ),
