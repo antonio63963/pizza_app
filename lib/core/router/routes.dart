@@ -1,11 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pizza_app/core/blocs/authenticatiion_bloc/authentication_bloc.dart';
+import 'package:pizza_app/core/router/route_name.dart';
+import 'package:pizza_app/screens/pizza_details_screen/view/pizza_details_screen.dart';
 import 'package:pizza_app/screens/welcome_screen/views/welcome_screen.dart';
 import 'package:pizza_app/screens/home/views/home_screen.dart';
-import 'package:user_repository/user_repository.dart';
 
 RouterConfig<Object>? routes(AuthenticationBloc bloc) {
   return GoRouter(
@@ -13,11 +12,20 @@ RouterConfig<Object>? routes(AuthenticationBloc bloc) {
     routes: [
       GoRoute(
         path: '/',
+        name: RouteName.auth,
         builder: (context, state) => const WelcomeScreen(),
       ),
       GoRoute(
         path: '/home',
+        name: RouteName.home,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: '/details/:title/:id',
+        name: RouteName.details,
+        builder: (context, state) => PizzaDetailsScreen(
+            title: state.pathParameters['title']!,
+            id: state.pathParameters['id']!),
       ),
     ],
     redirect: (_, routerState) {

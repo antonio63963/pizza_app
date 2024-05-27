@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pizza_app/core/blocs/authenticatiion_bloc/authentication_bloc.dart';
-import 'package:pizza_app/core/routes.dart';
+import 'package:pizza_app/core/router/routes.dart';
 import 'package:pizza_app/core/themes/light_theme.dart';
 import 'package:user_repository/user_repository.dart';
 

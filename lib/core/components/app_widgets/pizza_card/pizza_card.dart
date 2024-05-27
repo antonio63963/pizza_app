@@ -12,7 +12,12 @@ import 'widgets/veg_and_spicy.dart';
 
 class PizzaCard extends StatelessWidget {
   final Pizza pizza;
-  const PizzaCard({super.key, required this.pizza});
+  final Function() onClick;
+  const PizzaCard({
+    super.key,
+    required this.pizza,
+    required this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +27,9 @@ class PizzaCard extends StatelessWidget {
       shape: const RoundedRectangleBorder(borderRadius: MyStyles.cardBorder),
       color: MyColors.light,
       child: InkWell(
+        splashColor: MyColors.yellow,
         borderRadius: MyStyles.cardBorder,
-        onTap: () {},
+        onTap: onClick,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
