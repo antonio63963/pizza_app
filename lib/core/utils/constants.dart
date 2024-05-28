@@ -23,3 +23,7 @@ class MyColors {
     radius: .7,
   );
 }
+
+class AppConst {
+  static double appHorizontalPadding = 20;
+}

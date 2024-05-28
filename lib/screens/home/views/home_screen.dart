@@ -7,7 +7,9 @@ import 'package:pizza_app/core/components/app_widgets/pizza_card/pizza_card.dart
 import 'package:pizza_app/core/components/components.dart';
 import 'package:pizza_app/core/router/route_name.dart';
 import 'package:pizza_app/core/utils/constants.dart';
+import 'package:pizza_app/data/models/app_filters.dart';
 import 'package:pizza_app/data/models/pizza_model.dart';
+import 'package:pizza_app/screens/home/widgets/bottom_filter_row.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -32,10 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
               title: 'Home',
               isAuthenticated: state.status == AuthStatus.authenticated,
             ),
-            body: Padding(
+            body: Container(
               padding: const EdgeInsets.symmetric(horizontal: 6.0),
+              decoration: const BoxDecoration(gradient: MyColors.bgGradient),
               child: GridView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.only(top: 20, bottom: 70,),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 14,
@@ -58,67 +61,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            bottomNavigationBar: BottomAppBar(
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
-              color: MyColors.dark.withOpacity(.2),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                controller: scrollController,
-                child: Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Offers'),
-                      ],
+            bottomNavigationBar: BottomFilterRow(
+              scrollController: scrollController,
+              widgets: AppFilters.pFilters
+                  .map(
+                    (f) => AppChip(
+                      filter: f,
+                      onPressed: () =>
+                          setState(() => AppFilters.switchFilters(f)),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Veg'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Offers'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Veg'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Offers'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Veg'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Offers'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TagPizza(tagName: 'Veg'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                  )
+                  .toList(),
             ),
           );
         },
