@@ -9,7 +9,7 @@ import 'package:pizza_app/core/router/route_name.dart';
 import 'package:pizza_app/core/utils/constants.dart';
 import 'package:pizza_app/data/models/pizza_model.dart';
 
-import 'widgets/carousel_pizza.dart';
+import '../../../core/components/app_widgets/app_carousel/carousel_pizza.dart';
 
 class PizzaDetailsScreen extends StatelessWidget {
   final String title;
@@ -37,7 +37,7 @@ class PizzaDetailsScreen extends StatelessWidget {
                 horizontal: AppConst.appHorizontalPadding,
               ),
               children: [
-                CarouselPizza(
+                AppCarousel(
                   carouselHeight:
                       mediaSize.width - AppConst.appHorizontalPadding,
                   photos: pizzas[0].photos,

@@ -4,7 +4,7 @@ final pizzas = [
     img: 'assets/img/pizza/Margherita.png',
     photos: [
       'assets/img/pizza/Margherita_2.jpg',
-      'assets/img/pizza/Margherita.jpg'
+      'assets/img/pizza/Margherita_3.jpg'
     ],
     title: 'Margherita',
     description: 'Tomato sauce, Mozzarella, Olive oil, Basil leaves',
