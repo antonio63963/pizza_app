@@ -11,17 +11,21 @@ class VegAndSpicy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         TagPizza(
           tagName: isVegan ? 'Pure-veg' : 'Non-veg',
           bgColor: isVegan ? MyColors.green : null,
         ),
         const SizedBox(width: 8),
-        TagPizza(
-          tagName: isSpicy ? 'spicy' : 'non-spicy',
-          bgColor: MyColors.redLight,
-          textColor: MyColors.red,
-          icon: CupertinoIcons.flame,
+        Flexible(
+          fit: FlexFit.loose,
+          child: TagPizza(
+            tagName: isSpicy ? 'spicy' : 'non-spicy',
+            bgColor: MyColors.redLight,
+            textColor: MyColors.red,
+            icon: CupertinoIcons.flame,
+          ),
         )
       ],
     );

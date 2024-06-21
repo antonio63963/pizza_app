@@ -35,7 +35,7 @@ class _DotsWithControllState extends State<DotsWithControll> {
       padding: widget.padding,
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(.6),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -91,7 +91,7 @@ class _Dot extends StatelessWidget {
       for (var i = 0; i < amount; i++)
         _Dot(
           color: i == activeIndex ? activeColor : color,
-          width: i == activeIndex ? width * 2 + 10 : width,
+          width: i == activeIndex ? width * 2 : width,
           height: height,
         ),
     ];

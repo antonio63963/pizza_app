@@ -19,6 +19,7 @@ class TagPizza extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.hardEdge,
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
         vertical: 4,
@@ -30,21 +31,27 @@ class TagPizza extends StatelessWidget {
         ),
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (icon != null)
             Padding(
-              padding: const EdgeInsets.only(right: 4.0),
+              padding: const EdgeInsets.only(right: 2.0),
               child: Icon(
                 icon,
                 size: 16,
                 color: textColor ?? MyColors.light,
               ),
             ),
-          Text(
-            tagName.toUpperCase(),
-            style: TextStyle(
-              color: textColor ?? MyColors.light,
-              fontSize: 10,
+          Flexible(
+            fit: FlexFit.loose,
+            child: Text(
+              tagName.toUpperCase(),
+              softWrap: false,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: textColor ?? MyColors.light,
+                fontSize: 10,
+              ),
             ),
           ),
         ],
